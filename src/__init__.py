@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, jsonify
 from src.config.config import config_dict
 from src.models.database import db, migrate
 from os import path
+from src.auth.auth import auth
 
 def create_app(config = config_dict["dev"]):
      
@@ -9,7 +10,19 @@ def create_app(config = config_dict["dev"]):
      app.config.from_object(config)
      db.init_app(app=app)
      migrate.init_app(app=app)
+
      create_database(app=app)
+
+     @app.errorhandler(404)
+     def handle_not_found(e):
+         return jsonify({"error": str(e)})
+     
+
+     @app.errorhandler(500)
+     def handle_not_found(e):
+         return jsonify({"error": str(e)})
+     
+     app.register_blueprint(auth)
      
      return app
 
