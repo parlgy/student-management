@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from src.models.database import User, db
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
+from flask_login import login_user
 
 auth = Blueprint("auth", __name__, url_prefix="/api/auth")
 
@@ -41,6 +42,25 @@ def register_user():
                               }), 201
 
           return jsonify({"failed": "email already taken"}), 409
+
+
+""" A module to login user """
+@auth.post("/login")
+def login_user():
+
+    user_login_info = request.get_json()
+    if not request.content_type == "application/json":
+            return jsonify({"Registration failed": "content_type must be appliaction/json"}), 401
+
+    if verify_user_login_credentials(user_login_info):
+        existing_email = check_login_password(user_login_info["email"], user_login_info["password"])
+        if existing_email:
+            login_user(existing_email, remember=True)
+            return jsonify({"success": "login successful"}), 200
+
+        return jsonify({"error": "Invalid email or password"}), 401
+
+    return jsonify({"failed": "all fields are required"}), 401
 
 
 
@@ -83,4 +103,6 @@ def check_login_password(email, password):
             return existing_email
         
         return False
+    
     return False
+
