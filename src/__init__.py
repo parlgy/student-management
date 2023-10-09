@@ -3,6 +3,7 @@ from src.config.config import config_dict
 from src.models.database import db, migrate, User
 from os import path
 from src.auth.auth import auth
+from src.views.views import views
 from flask_login import LoginManager
 
 login_manager = LoginManager()
@@ -15,7 +16,7 @@ def create_app(config = config_dict["dev"]):
      db.init_app(app=app)
      migrate.init_app(app=app)
      login_manager.init_app(app=app)
-     login_manager.login_view = "auth.login_user"
+     login_manager.login_view = "auth.login_blogger"
 
      create_database(app=app)
 
@@ -29,7 +30,8 @@ def create_app(config = config_dict["dev"]):
          return jsonify({"error": str(e)})
      
      app.register_blueprint(auth)
-
+     app.register_blueprint(views)
+ 
      @login_manager.user_loader
      def load_user(user_id):
          return User.query.get(int(user_id))

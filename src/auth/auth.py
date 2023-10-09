@@ -46,16 +46,17 @@ def register_user():
 
 """ A module to login user """
 @auth.post("/login")
-def login_user():
-
-    user_login_info = request.get_json()
+def login_blogger():
     if not request.content_type == "application/json":
             return jsonify({"Registration failed": "content_type must be appliaction/json"}), 401
-
+    user_login_info = request.get_json()
+    
     if verify_user_login_credentials(user_login_info):
         existing_email = check_login_password(user_login_info["email"], user_login_info["password"])
         if existing_email:
-            login_user(existing_email, remember=True)
+            user = User.query.filter_by(email=user_login_info["email"]).first()
+            login_user(user, remember=True)
+
             return jsonify({"success": "login successful"}), 200
 
         return jsonify({"error": "Invalid email or password"}), 401
