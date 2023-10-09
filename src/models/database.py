@@ -1,12 +1,13 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_migrate import Migrate
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 migrate = Migrate()
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
           id = db.Column(db.Integer, primary_key = True, index=True)
           first_name = db.Column(db.String(20), nullable=False)
           last_name = db.Column(db.String(20), nullable=False)
