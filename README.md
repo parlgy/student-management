@@ -20,14 +20,14 @@ user@username:~$ flask run  # use this command to start the server
 #### User gets registered to the system by making a request to the endpoint below
    + url: POST  [http://studentcrud1.pythonanywhere.com/api/auth/register]()
    ```python
-     {"Content-type": "application/json"}
+    headers: 
+        Content-type: application/json
 
-        body = {
-                "first_name": "user first name",
-                "last_name": "user last name",
-                "email": "email@gmail.com",
-                "password":"password"
-        } 
+   request body:
+       first_name: string,
+       last_name: string,
+       email: string,
+       password: string
 ````
     
 The status_code of the response == 201 if the registration is successfull else returns a bad request error.(400).
