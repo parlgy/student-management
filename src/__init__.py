@@ -36,6 +36,10 @@ def create_app(config = config_dict["dev"]):
      def load_user(user_id):
          return User.query.get(int(user_id))
      
+     @app.route("/")
+     def index():
+         return jsonify({"Hello there":" Welcome to best blogging web app" })
+     
      return app
 
 
