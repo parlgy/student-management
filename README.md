@@ -18,7 +18,7 @@ user@username:~$ flask run  # use this command to start the server
 ```  
 ### User registration    
 #### User gets registered to the system by making a request to the endpoint below
-   + url: POST  [http://localhost:5000/api/auth/register]()
+   + url: POST  [http://studentcrud1.pythonanywhere.com/api/auth/register]()
    ```python
      {"Content-type": "application/json"}
 
