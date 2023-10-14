@@ -45,6 +45,22 @@ user should double check the registration credentials.
    request body:
        email: string,
        password: string
-````
+   ````
 The status_code of the response == 200 if the login is successfull else returns unauthorized error.(401).
- 
+
+## Get all blogs in the system 
+  + url: GET  [http://studentcrud1.pythonanywhere.com/api/views/blog]()
+   +
+     ```python
+     headers:
+     content-type: application/json
+     ```
+
+## Get all blogs assocciated with the current use 
+  + url: GET  [http://studentcrud1.pythonanywhere.com/api/views/userblogs]()
+   + Login required
+     ```python
+     headers:
+     content-type: application/json
+     ```
+     
