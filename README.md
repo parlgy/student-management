@@ -33,6 +33,16 @@ user@username:~$ flask run  # use this command to start the server
 The status_code of the response == 201 if the registration is successfull else returns a bad request error.(400).
 user should double check the registration credentials.
 
-### User Login  
+## User Login  
+#### User gets logged into the system by making a post request to the following endpoint
+ + url: POST  [http://studentcrud1.pythonanywhere.com/api/auth/login]()
+   ```python
+    headers: 
+        Content-type: application/json
 
-
+   request body:
+       email: string,
+       password: string
+````
+The status_code of the response == 200 if the login is successfull else returns unauthorized error.(401).
+ 
