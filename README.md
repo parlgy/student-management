@@ -13,6 +13,8 @@ You can use the git clone  command as follows:
 ```sh 
 user@username:~$ git clone https://github.com/parlgy/student-management.git  
 user@username:~$ cd  student-management
+user@username:~$ python -m venv my_venv # create a virtual env to manage your dependecies
+user@username:~$ source my_venv/bin/activate  # for linux users
 user@username:~$ pip3 install -r requirements.txt  #install all the dependecies used in this project
 user@username:~$ flask run  # use this command to start the server
 ```  
