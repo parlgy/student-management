@@ -56,7 +56,7 @@ The status_code of the response == 200 if the login is successfull else returns 
      content-type: application/json
      ```
 
-## Get all blogs assocciated with the current use 
+## Get all blogs assocciated with the current user
   + url: GET  [http://studentcrud1.pythonanywhere.com/api/views/userblogs]()
    + Login required
      ```python
